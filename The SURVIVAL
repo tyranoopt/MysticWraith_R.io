@@ -9,17 +9,16 @@ def battle(player1, player2):
         if attack > defense:
             player2['health'] -= attack - defense
             if player2['health'] <= 0:
-                print(f"{player1['name']} wins!")
-                break
+                return f"{player1['name']} wins!"
         else:
             player1['health'] -= defense - attack
             if player1['health'] <= 0:
-                print(f"{player2['name']} wins!")
-                break
+                return f"{player2['name']} wins!"
 
 # Players
 player1 = {'name': 'Player 1', 'health': 100}
 player2 = {'name': 'Player 2', 'health': 100}
 
-# Start the battle
-battle(player1, player2)
+# Start the battle and print the result
+result = battle(player1, player2)
+print(result)
