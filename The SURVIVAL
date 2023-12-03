@@ -1,24 +1,28 @@
 import random
 
-# Function to simulate a battle between two players
-def battle(player1, player2):
-    while True:
-        attack = random.randint(1, 20)
-        defense = random.randint(1, 20)
-        
-        if attack > defense:
-            player2['health'] -= attack - defense
-            if player2['health'] <= 0:
-                return f"{player1['name']} wins!"
+def guessing_game():
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thinking of a number between 1 and 20.")
+
+    secret_number = random.randint(1, 20)
+    attempts = 0
+
+    while attempts < 6:
+        guess = int(input("Take a guess: "))
+
+        attempts += 1
+
+        if guess < secret_number:
+            print("Your guess is too low.")
+        elif guess > secret_number:
+            print("Your guess is too high.")
         else:
-            player1['health'] -= defense - attack
-            if player1['health'] <= 0:
-                return f"{player2['name']} wins!"
+            break  # The correct guess
 
-# Players
-player1 = {'name': 'Player 1', 'health': 100}
-player2 = {'name': 'Player 2', 'health': 100}
+    if guess == secret_number:
+        print(f"Congratulations! You guessed the number in {attempts} attempts.")
+    else:
+        print(f"Sorry, the number I was thinking of was {secret_number}.")
 
-# Start the battle and print the result
-result = battle(player1, player2)
-print(result)
+if __name__ == "__main__":
+    guessing_game()
