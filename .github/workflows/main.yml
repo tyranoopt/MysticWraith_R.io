@@ -1,23 +1,26 @@
-# Function to simulate a battle between two players
-def battle(player1_health, player2_health):
-    while player1_health > 0 and player2_health > 0:
-        attack_player1 = random.randint(1, 20)
-        attack_player2 = random.randint(1, 20)
+# Define the Player class
+class Player:
+    def __init__(self, name, health):
+        self.name = name
+        self.health = health
 
-        if attack_player1 > attack_player2:
-            player2_health -= attack_player1 - attack_player2
-        else:
-            player1_health -= attack_player2 - attack_player1
+    def attack(self, other):
+        print(f"{self.name} attacks {other.name}!")
+        damage = 10  # Define a static damage value for the sake of example
+        other.health -= damage
+        print(f"{other.name} loses {damage} health points.")
 
-    if player1_health > player2_health:
-        return "Player 1 wins!"
-    else:
-        return "Player 2 wins!"
+# Create two player instances
+player1 = Player("Player 1", 100)
+player2 = Player("Player 2", 100)
 
-# Players' initial health
-player1_health = 100
-player2_health = 100
+# Simulate a battle between the players
+while player1.health > 0 and player2.health > 0:
+    player1.attack(player2)
+    player2.attack(player1)
 
-# Start the battle and print the result
-result = battle(player1_health, player2_health)
-print(result)
+# Determine the winner
+if player1.health > player2.health:
+    print(f"{player1.name} wins!")
+else:
+    print(f"{player2.name} wins!")
