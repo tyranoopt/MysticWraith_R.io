@@ -1,0 +1,25 @@
+import random
+
+# Function to simulate a battle between two players
+def battle(player1, player2):
+    while True:
+        attack = random.randint(1, 20)
+        defense = random.randint(1, 20)
+        
+        if attack > defense:
+            player2['health'] -= attack - defense
+            if player2['health'] <= 0:
+                print(f"{player1['name']} wins!")
+                break
+        else:
+            player1['health'] -= defense - attack
+            if player1['health'] <= 0:
+                print(f"{player2['name']} wins!")
+                break
+
+# Players
+player1 = {'name': 'Player 1', 'health': 100}
+player2 = {'name': 'Player 2', 'health': 100}
+
+# Start the battle
+battle(player1, player2)
